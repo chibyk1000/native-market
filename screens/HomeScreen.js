@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity } from "react-native";
 import { StatusBar } from 'expo-status-bar'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -6,7 +6,8 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { SimpleLineIcons } from "@expo/vector-icons";
 import Slider from '../components/Slider';
 import Table from '../components/Table';
-const HomeScreen = () => {
+
+const HomeScreen = ({navigation}) => {
   return (
     <SafeAreaView>
       <View className="flex-row justify-between px-4 py-3">
@@ -22,9 +23,10 @@ const HomeScreen = () => {
         <View className="w-[45%] h-40 rounded-xl bg-primary/80 items-center justify-center ">
           <Text className="text-white text-center text-4xl">Trending Products</Text>
         </View>
-        <View className="w-[45%] h-40 rounded-xl bg-secondary/70 items-center justify-center ">
+    
+        <TouchableOpacity  className="w-[45%]  h-40 rounded-xl bg-secondary/70 items-center justify-center " onPress={()=> navigation.navigate('Products')}>
           <Text className="text-white text-center text-4xl">All Products</Text>
-        </View>
+        </TouchableOpacity>
       </View>
       <View className="my-3 h-72">
         <Slider/>

@@ -9,6 +9,8 @@ import WelcomeScreen from './screens/WelcomeScreen';
 import { PaperProvider } from 'react-native-paper';
 import {name as appName} from './app.json'
 import TabsNavigations from './navigations/TabsNavigations';
+import Products from './screens/Products';
+import SingleProduct from './screens/SingleProduct'
 const  Stack =  createNativeStackNavigator()
 export default function App() {
   return (
@@ -32,6 +34,17 @@ export default function App() {
         <Stack.Screen
           component={SignUp}
           name="SignUp"
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          component={Products}
+          name="Products"
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          component={SingleProduct}
+          name="SingleProduct"
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
