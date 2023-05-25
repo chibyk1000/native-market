@@ -57,25 +57,24 @@ class ListView extends React.Component {
   }
 
 
-  _generateArray(n) {
-    let arr = new Array(n);
-    for (let i = 0; i < n; i++) {
-      arr[i] = i;
-    }
-    return arr;
+  _generateArray() {
+  
+    return this.props.products;
   }
 
   //Given type and data return the view component
   _rowRenderer(type, data) {
+   
     //You can return any view here, CellContainer has no special significance
+    const image =  data.image.replace('localhost','192.168.153.179')
     return (
       <TouchableOpacity
         className="bg-white shadow-lg h-80 my-2 w-[95%] mx-auto rounded-xl p-1 justify-around"
-        onPress={() => this.props.handleNavigate('SingleProduct')}
+        onPress={() => this.props.handleNavigate('SingleProduct', {...data, image})}
       >
         <View className="w-full h-[60%]">
           <Image
-            source={require("../assets/2.jpg")}
+            source={{uri:image}}
             className="h-full w-full"
             resizeMode="contain"
             resizeMethod="scale"
@@ -83,14 +82,14 @@ class ListView extends React.Component {
         </View>
         <View>
           <Text className="font-bold text-xl text-center">
-            Lorem ipsum dolor sit amet, consectetur
+           {data.title}
           </Text>
         </View>
         <View className="flex-row justify-between items-center">
           <Text className="bg-secondary  font-bold  rounded-xl p-2 text-white">
             4.9
           </Text>
-          <Text className="text-primary font-bold text-xl">$20.00</Text>
+          <Text className="text-primary font-bold text-xl">${new Intl.NumberFormat().format(data.price)}</Text>
         </View>
       </TouchableOpacity>
     );

@@ -1,10 +1,10 @@
 import * as React from "react";
 import { Appbar, Badge } from "react-native-paper";
 
-const TopBar = () => (
+const TopBar = ({title}) => (
   <Appbar.Header>
     <Appbar.BackAction  onPress={() => {}} />
-    <Appbar.Content title="Title" />
+    <Appbar.Content title={title} />
     <Appbar.Action icon="heart" onPress={() => {}} />
         <Appbar.Action icon="share-variant-outline" onPress={() => { }} />
      

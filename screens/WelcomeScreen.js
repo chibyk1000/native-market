@@ -1,11 +1,19 @@
 import { View, Text, Image } from 'react-native'
-import React from 'react'
+import React, {useEffect, useContext,} from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Button from '../components/Button';
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from '@react-navigation/native';
+import { User } from '../components/UserContext';
 const WelcomeScreen = () => {
   const navigation = useNavigation()
+  const { user } = useContext(User)
+  useEffect(() => { 
+    
+    if (user) {
+      navigation.navigate('Tabs')
+    }
+  },[user])
   return (
     <SafeAreaView className="bg-white flex-1  justify-center">
       <View className=" justify-between flex-1 py-10">

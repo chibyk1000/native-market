@@ -1,13 +1,21 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import { StatusBar } from 'expo-status-bar'
-import React from 'react'
+import React, {useContext, useEffect} from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { SimpleLineIcons } from "@expo/vector-icons";
 import Slider from '../components/Slider';
 import Table from '../components/Table';
+import { User } from "../components/UserContext";
+const HomeScreen = ({ navigation }) => {
+  const { user } = useContext(User);
+  console.log(user);
 
-const HomeScreen = ({navigation}) => {
+  useEffect(() => {
+    if (!user) {
+      navigation.navigate("Welcome");
+    }
+  },[user])
   return (
     <SafeAreaView>
       <View className="flex-row justify-between px-4 py-3">

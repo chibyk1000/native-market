@@ -3,13 +3,15 @@ import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import TopBar from '../components/TopBar';
 
-const SingleProduct = () => {
+const SingleProduct = ({ route }) => {
+  const { item } = route.params
+
   return (
     <SafeAreaView className="flex-1">
-      <TopBar/>
+      <TopBar title={ item.title} />
       <View>
         <Image
-          source={require("../assets/2.jpg")}
+          source={{uri:item.image}}
           className="h-full w-full"
           resizeMode="contain"
           resizeMethod="scale"
