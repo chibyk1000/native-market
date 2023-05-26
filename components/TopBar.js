@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Appbar, Badge } from "react-native-paper";
 
-const TopBar = ({title}) => (
-  <Appbar.Header>
-    <Appbar.BackAction  onPress={() => {}} />
+const TopBar = ({title, navigation}) => (
+  <Appbar.Header className="-mt-8" mode="center-aligned" elevated >
+    <Appbar.BackAction  onPress={() => navigation()} />
     <Appbar.Content title={title} />
     <Appbar.Action icon="heart" onPress={() => {}} />
         <Appbar.Action icon="share-variant-outline" onPress={() => { }} />

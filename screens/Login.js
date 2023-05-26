@@ -22,6 +22,7 @@ try {
     navigation.navigate("Tabs");
   }
 } catch (error) {
+  console.log(error);
   console.log(error.response.data);
 }
     

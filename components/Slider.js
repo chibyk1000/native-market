@@ -21,7 +21,7 @@ return (
       autoPlay={true}
       data={images}
       scrollAnimationDuration={1000}
-      onSnapToItem={(index) => console.log("current index:", index)}
+      // onSnapToItem={(index) => console.log("current index:", index)}
       renderItem={({ index, item }) => (
         <View
           style={{
