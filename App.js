@@ -1,3 +1,4 @@
+import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, AppRegistry } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
@@ -12,7 +13,10 @@ import TabsNavigations from "./navigations/TabsNavigations";
 import Products from "./screens/Products";
 import SingleProduct from "./screens/SingleProduct";
 import UserContext from "./components/UserContext";
+import DrawerNavigation from "./navigations/DrawerNavigation";
+
 const Stack = createNativeStackNavigator();
+
 export default function App() {
   return (
     <UserContext>
@@ -20,8 +24,8 @@ export default function App() {
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Welcome">
             <Stack.Screen
-              component={TabsNavigations}
-              name="Tabs"
+              component={DrawerNavigation}
+              name="Drawer"
               options={{ headerShown: false }}
             />
             <Stack.Screen

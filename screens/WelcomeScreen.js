@@ -8,10 +8,11 @@ import { User } from '../components/UserContext';
 const WelcomeScreen = () => {
   const navigation = useNavigation()
   const { user } = useContext(User)
+  console.log(user);
   useEffect(() => { 
     
     if (user) {
-      navigation.navigate('Tabs')
+      navigation.navigate('Drawer')
     }
   },[user])
   return (

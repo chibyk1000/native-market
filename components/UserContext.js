@@ -1,14 +1,14 @@
 import { View, Text } from 'react-native'
 import React, {createContext, useEffect, useState} from 'react'
 import axios from 'axios'
-
+import { BASE_URL } from "@env";
 export const User = createContext()
 
 
 export const getUser = async () => {
       try {
           const response = await axios.get(
-            "http://192.168.153.179:8080/user/profile"
+            `${BASE_URL}/user/profile`
           );
           if (response.data) {
               return response.data
@@ -27,6 +27,8 @@ const UserContext = ({children}) => {
         
         getUser().then(function (user) {
             setUser(user)
+        }).catch((err) => {
+          console.log(err);
         })
     }, [loggedin])
   
@@ -35,7 +37,7 @@ const UserContext = ({children}) => {
     const getProducts = async() => {
      try {
        const response = await axios.get(
-         "http://192.168.153.179:8080/products/get-products"
+         `${BASE_URL}/products/get-products`
        );
        setProducts(response.data)
      } catch (error) {

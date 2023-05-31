@@ -13,7 +13,7 @@ import MyButton from "../components/Button";
 import { SafeAreaView } from "react-native-safe-area-context";
 import axios from "axios";
 import { MaterialIcons } from "@expo/vector-icons";
-
+import { BASE_URL } from "@env";
 const SignUp = ({ navigation }) => {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastName] = useState("");
@@ -43,7 +43,7 @@ const SignUp = ({ navigation }) => {
         repeat_password,
       };
       const response = await axios.post(
-        "http://192.168.153.179:8080/user/create-account",
+        `${BASE_URL}/user/create-account`,
         data
       );
       if (response.status == 200) {
@@ -164,7 +164,7 @@ const SignUp = ({ navigation }) => {
             secureTextEntry
             activeOutlineColor="#2f8b33"
             value={repeat_password}
-            onChangeText={(text) => setRepeat_Password(text)}
+            onChangeText={(text) => setRepeat_Pasword(text)}
           />
           <MyButton
             classes="bg-primary py-2 mx-3  mt-3 rounded flex-row justify-center items-center"

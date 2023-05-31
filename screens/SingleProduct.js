@@ -7,7 +7,7 @@ import Button from '../components/Button';
 import { Entypo } from "@expo/vector-icons";
 const SingleProduct = ({ route, navigation }) => {
   const { item } = route.params
-3
+3n
   const back = () => {
     navigation.goBack()
   }

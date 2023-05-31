@@ -2,31 +2,25 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { StatusBar } from 'expo-status-bar'
 import React, {useContext, useEffect} from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { SimpleLineIcons } from "@expo/vector-icons";
+
 import Slider from '../components/Slider';
 import Table from '../components/Table';
 import { User } from "../components/UserContext";
+
 const HomeScreen = ({ navigation }) => {
   const { user } = useContext(User);
-  console.log(user);
 
   useEffect(() => {
-    if (!user) {
+    if (Object.keys(user).length < 1) {
       navigation.navigate("Welcome");
     }
-  },[user])
+  }, [user])
+  
+
+  
   return (
     <SafeAreaView>
-      <View className="flex-row justify-between px-4 py-3">
-        <MaterialCommunityIcons
-          name="microsoft-xbox-controller-menu"
-          size={28}
-          color="black"
-        />
-
-        <SimpleLineIcons name="handbag" size={24} color="black" />
-      </View>
+    
       <View className="flex-row gap-2 justify-evenly ">
         <View className="w-[45%] h-40 rounded-xl bg-primary/80 items-center justify-center ">
           <Text className="text-white text-center text-4xl">Trending Products</Text>

@@ -4,7 +4,7 @@
  */
 import React, { Component } from "react";
 import { View, Text, Dimensions, Image, TouchableOpacity } from "react-native";
-
+import { IPV4 } from "@env";
 import {
   RecyclerListView,
   DataProvider,
@@ -66,7 +66,7 @@ class ListView extends React.Component {
   _rowRenderer(type, data) {
    
     //You can return any view here, CellContainer has no special significance
-    const image =  data.image.replace('localhost','192.168.153.179')
+    const image =  data.image.replace('localhost',IPV4)
     return (
       <TouchableOpacity
         className="bg-white shadow-lg h-80 my-2 w-[95%] mx-auto rounded-xl p-1 justify-around"

@@ -4,26 +4,29 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { TextInput } from 'react-native-paper';
 import Button from '../components/Button';
 import axios from 'axios';
-import  {getUser, User} from '../components/UserContext';
+import { getUser, User } from '../components/UserContext';
+import { BASE_URL } from "@env";
 const Login = ({ navigation }) => {
+;
   const [data, setData] = useState({ email: "", password: "" })
   const {loggedin, setLoggedin, setUser} =  useContext(User)
   const handlePress = async() => {
-    console.log('kk');
+    console.log(BASE_URL);
 try {
   const response = await axios.post(
-    "http://192.168.153.179:8080/user/login",
+    `${BASE_URL}/user/login`,
     data
   );
+  console.log(response.status);
   if (response.status === 200) {
     const user = await getUser()
     setUser(user)
     setLoggedin(true)
-    navigation.navigate("Tabs");
+    navigation.navigate("Drawer");
   }
 } catch (error) {
   console.log(error);
-  console.log(error.response.data);
+  // console.log(error.response.data);
 }
     
 
