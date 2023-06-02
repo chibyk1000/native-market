@@ -5,16 +5,12 @@ import Button from '../components/Button';
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from '@react-navigation/native';
 import { User } from '../components/UserContext';
+
+
 const WelcomeScreen = () => {
   const navigation = useNavigation()
-  const { user } = useContext(User)
-  console.log(user);
-  useEffect(() => { 
-    
-    if (user) {
-      navigation.navigate('Drawer')
-    }
-  },[user])
+
+
   return (
     <SafeAreaView className="bg-white flex-1  justify-center">
       <View className=" justify-between flex-1 py-10">

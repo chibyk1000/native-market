@@ -18,7 +18,7 @@ const Header = ({ navigation }) => {
       setImage(image)
     }
   }, [user])
-console.log(image);
+console.log('out',  image);  
   return (
     <SafeAreaView className="flex-row justify-between px-4    items-center  h-20">
       <TouchableOpacity onPress={() => navigation.openDrawer()}>
@@ -30,11 +30,19 @@ console.log(image);
       </TouchableOpacity>
       <View className="flex-row gap-3">
         <SimpleLineIcons name="handbag" size={24} color="black" />
-        <Avatar.Image
-          size={24}
-          source={{ uri: `${image.length > 1 ? image: ""}` }}
-        />
-        <Image source={{ uri: image }} className="w-20"/>
+
+        {image ? (
+          <Avatar.Image
+            size={24}
+            source={{ uri: image }}
+          />
+        ) : (
+          <Avatar.Image
+            size={24}
+            source={{ uri: "http://192.168.3.118:8080/uploads/default.png" }}
+          />
+        )}
+       
       </View>
     </SafeAreaView>
   );

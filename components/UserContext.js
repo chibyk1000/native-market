@@ -35,21 +35,21 @@ const UserContext = ({children}) => {
  
   useEffect(() => {
     const getProducts = async() => {
-     try {
+     try {  
        const response = await axios.get(
          `${BASE_URL}/products/get-products`
        );
        setProducts(response.data)
      } catch (error) {
       console.log(error);
-     }
+     }  
    }
     getProducts()
   }, [])
   console.log(products)
   
-  return (
-    <User.Provider value={{user, setUser, loggedin, setLoggedin, products}}>
+  return (  
+    <User.Provider value={{user, setUser, loggedin, setLoggedin, products}}>  
    {children}
     </User.Provider>
   )

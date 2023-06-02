@@ -1,19 +1,21 @@
-import { View, Text } from 'react-native'
+import { View, Text, Image } from 'react-native'
 import React, { useState, useContext, useEffect } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { TextInput } from 'react-native-paper';
 import Button from '../components/Button';
 import { User } from '../components/UserContext';
 import axios from 'axios';
-import { RefreshControl } from 'react-native';
+import { RefreshControl, Platform } from 'react-native';
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { BASE_URL } from "@env";
+import * as ImagePicker from "expo-image-picker";
 const Profile = () => {
     const [firstname, setFirstname] = useState("");
     const [lastname, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("");
+  const [image, setImage] = useState('')
   const [repeat_password, setRepeat_Pasword] = useState("");
   const [refreshing, setRefreshing] = React.useState(false);
   
@@ -22,7 +24,7 @@ const Profile = () => {
     setFirstname(user.firstname)
     setLastName(user.lastname)
     setEmail(user.email)
-    
+    // setImage(user.image_url)
   },[user])
 
   const onRefresh = React.useCallback(() => {
@@ -48,6 +50,20 @@ const Profile = () => {
       console.log(error);
     }
   }
+
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+    }
+  };
+
   return (
     // <SafeAreaView className="flex-1 ">
     <KeyboardAwareScrollView
@@ -61,6 +77,12 @@ const Profile = () => {
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }
     >
+      <Button classes="bg-secondary w-20 " onPress={pickImage}>
+        <Text className="text-white text-center">Upload pics</Text>
+      </Button>
+      {image && (
+        <Image source={{ uri: image }} style={{ width: 50, height: 50 }} />
+      )}
       <View>
         <Text className="text-center text-3xl font-bold">Profile</Text>
         <TextInput

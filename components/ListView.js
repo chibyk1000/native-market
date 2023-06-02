@@ -66,7 +66,10 @@ class ListView extends React.Component {
   _rowRenderer(type, data) {
    
     //You can return any view here, CellContainer has no special significance
-    const image =  data.image.replace('localhost',IPV4)
+    const image = data.image.replace('localhost', IPV4)
+    
+    // "http://localhost:8000/uploads/default.png";
+    console.log(image);
     return (
       <TouchableOpacity
         className="bg-white shadow-lg h-80 my-2 w-[95%] mx-auto rounded-xl p-1 justify-around"

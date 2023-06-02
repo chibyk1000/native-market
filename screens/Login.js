@@ -1,15 +1,34 @@
 import { View, Text } from 'react-native'
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { TextInput } from 'react-native-paper';
 import Button from '../components/Button';
 import axios from 'axios';
+import * as LocalAuthentication from "expo-local-authentication";
 import { getUser, User } from '../components/UserContext';
 import { BASE_URL } from "@env";
 const Login = ({ navigation }) => {
-;
+
+
   const [data, setData] = useState({ email: "", password: "" })
-  const {loggedin, setLoggedin, setUser} =  useContext(User)
+  const { loggedin, setLoggedin, setUser, user } = useContext(User)
+  
+    const authenticate = async () => {
+      try {
+        const { success } = await LocalAuthentication.authenticateAsync();
+        if (success) {
+          console.log(success);
+          navigation.navigate("Drawer");
+        }
+      } catch (error) {}
+    };
+
+    useEffect(() => {
+      console.log(user, "user");
+      if (user) {
+        authenticate();
+      }
+    }, [user]);
   const handlePress = async() => {
     console.log(BASE_URL);
 try {
@@ -17,13 +36,13 @@ try {
     `${BASE_URL}/user/login`,
     data
   );
-  console.log(response.status);
+  console.log(response.status)
   if (response.status === 200) {
     const user = await getUser()
     setUser(user)
     setLoggedin(true)
     navigation.navigate("Drawer");
-  }
+  }   
 } catch (error) {
   console.log(error);
   // console.log(error.response.data);
@@ -31,6 +50,9 @@ try {
     
 
   }
+
+
+
   return (
     <SafeAreaView className="flex-1 justify-center">
       <View>
