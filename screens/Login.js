@@ -19,7 +19,7 @@ const Login = ({ navigation }) => {
         if (success) {
           console.log(success);
           navigation.navigate("Drawer");
-        }
+        }  
       } catch (error) {}
     };
 
@@ -40,7 +40,7 @@ try {
   if (response.status === 200) {
     const user = await getUser()
     setUser(user)
-    setLoggedin(true)
+    setLoggedin(true) 
     navigation.navigate("Drawer");
   }   
 } catch (error) {

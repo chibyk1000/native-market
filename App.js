@@ -14,11 +14,14 @@ import Products from "./screens/Products";
 import SingleProduct from "./screens/SingleProduct";
 import UserContext from "./components/UserContext";
 import DrawerNavigation from "./navigations/DrawerNavigation";
-
+import { Provider } from "react-redux";
+import store from './redux/store'
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
+    <Provider store={store}>
+
     <UserContext>
       <PaperProvider>
         <NavigationContainer>
@@ -58,6 +61,7 @@ export default function App() {
         </NavigationContainer>
       </PaperProvider>
     </UserContext>
+    </Provider>
   );
 }
 

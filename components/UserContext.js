@@ -3,6 +3,8 @@ import React, {createContext, useEffect, useState} from 'react'
 import axios from 'axios'
 import { BASE_URL } from "@env";
 export const User = createContext()
+import {useDispatch} from 'react-redux'
+import { getCart } from '../redux/reducers/cartReducers';
 
 
 export const getUser = async () => {
@@ -22,14 +24,17 @@ export const getUser = async () => {
 const UserContext = ({children}) => {
     const [user, setUser] = useState({})
   const [loggedin, setLoggedin] = useState(false)
-  const [products, setProducts] =  useState([])
+  const [products, setProducts] = useState([])
+  const dispatch = useDispatch();
     useEffect(() => {
         
         getUser().then(function (user) {
-            setUser(user)
+          setUser(user)
+             dispatch(getCart());
         }).catch((err) => {
           console.log(err);
         })
+         dispatch(getCart());
     }, [loggedin])
   
  
@@ -46,13 +51,13 @@ const UserContext = ({children}) => {
    }
     getProducts()
   }, [])
-  console.log(products)
-  
+
+
   return (  
     <User.Provider value={{user, setUser, loggedin, setLoggedin, products}}>  
    {children}
     </User.Provider>
-  )
+  ) 
 }
 
 export default UserContext
