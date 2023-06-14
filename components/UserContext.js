@@ -10,12 +10,12 @@ import { getCart } from '../redux/reducers/cartReducers';
 export const getUser = async () => {
       try {
           const response = await axios.get(
-            `${BASE_URL}/user/profile`
-          );
+            `${BASE_URL}/user/profile` 
+          );   
           if (response.data) {
               return response.data
           }
-      } catch (error) {
+      } catch (error) {  
         console.log('err',error.response.data)
       }
 }
@@ -25,7 +25,7 @@ const UserContext = ({children}) => {
     const [user, setUser] = useState({})
   const [loggedin, setLoggedin] = useState(false)
   const [products, setProducts] = useState([])
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); 
     useEffect(() => {
         
         getUser().then(function (user) {
@@ -53,7 +53,7 @@ const UserContext = ({children}) => {
   }, [])
 
 
-  return (  
+  return (   
     <User.Provider value={{user, setUser, loggedin, setLoggedin, products}}>  
    {children}
     </User.Provider>

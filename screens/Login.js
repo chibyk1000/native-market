@@ -33,14 +33,14 @@ const Login = ({ navigation }) => {
     console.log(BASE_URL);
 try {
   const response = await axios.post(
-    `${BASE_URL}/user/login`,
+    `${BASE_URL}/user/login`, 
     data
   );
   console.log(response.status)
   if (response.status === 200) {
     const user = await getUser()
     setUser(user)
-    setLoggedin(true) 
+    setLoggedin(true)  
     navigation.navigate("Drawer");
   }   
 } catch (error) {

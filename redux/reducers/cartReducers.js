@@ -8,7 +8,7 @@ export const addCart = createAsyncThunk('addCart', async (data, user) => {
         
        const result =     await axios.post(`${BASE_URL}/cart/add`, {
              ...data,
-             user_id: user._id,
+             user_id: user._id,   
        });
     
         return result.data
@@ -22,7 +22,7 @@ export const getCart = createAsyncThunk("getCart", async (  ) => {
   try {
       const result = await axios.get(`${BASE_URL}/cart`)
       return result.data
-  } catch (error) {}
+  } catch (error) {}      
 });
 
 
